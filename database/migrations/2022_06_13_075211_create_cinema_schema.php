@@ -37,7 +37,19 @@ class CreateCinemaSchema extends Migration
      */
     public function up()
     {
-        throw new \Exception('implement in coding task 4, you can ignore this exception if you are just running the initial migrations.');
+        Schema::create('cinemas', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('theatr_id')->index('idx_theatr_id');
+            $table->string('name');
+            $table->string('cast');
+            $table->text('description');
+            $table->date('relase_date')->index('idx_relase_date');
+            $table->string('image');
+            $table->string('video_url');
+            $table->boolean('status');
+            $table->timestamp('created_at')->useCurrent()->index('idx_created_at');
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->index('idx_updated_at');
+        });
     }
 
     /**
