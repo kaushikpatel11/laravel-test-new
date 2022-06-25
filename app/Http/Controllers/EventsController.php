@@ -182,6 +182,9 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
-        throw new \Exception('implement in coding task 2');
+        // In database i have 1 record 2022  and two record is 2023
+        $data = Event::with('workshops')->where('created_at', '>=', now())->get();
+        
+        return response()->json($data);
     }
 }
